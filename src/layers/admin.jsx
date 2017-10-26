@@ -8,8 +8,15 @@ class Admin extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			usersKeys: []
+			usersKeys: [],
+			sortValue: this.beginVal
 		};
+		this.sortValueChange = this.sortValueChange.bind(this);
+	}
+	sortValueChange(e){
+		this.setState({
+			sortValue: e.target.value
+		})
 	}
 	componentWillMount() {
         for (let form in localStorage){
@@ -17,19 +24,22 @@ class Admin extends React.Component{
         }
 	}
 	render(){
+		console.log(this.state.sortValue);
 			let usersForms =  this.state.usersKeys.map((value, index)=>{
 				let createData = localStorage.getItem(value),
 					data = JSON.parse(createData);
-				return <FormUser key={index+''} data={data} id = {value} />
+				return <FormUser key={index+''} data={data} id = {value} display = {true}/>
 			});
 		return(
+
 			<Grid>
 				<Row>
 					<Col xs = {12} md = {4}>
 						<FormGroup controlId="formControlsSelect">
 							<ControlLabel>Сортировать</ControlLabel>
-							<FormControl componentClass="select" placeholder="select">
-								<option value="all">Все</option>
+							<FormControl componentClass="select" placeholder="select" onChange={this.sortValueChange} inputRef = {(input)=>{this.beginVal = input}}>
+								<option value="all" checked>Все</option>
+								<option value="read">Прочитано</option>
 								<option value="good">Хорошие</option>
 								<option value="bad">Плохие</option>
 							</FormControl>

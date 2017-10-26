@@ -33,7 +33,11 @@ class Third extends React.Component{
 				nationality: this.nationality.value,
 				maritalStatus: this.maritalStatus.value,
 				firstImg: this.state.firstImg,
-				secondImg: this.state.secondImg
+				secondImg: this.state.secondImg,
+				status: {
+					read: false,
+					quality: true
+				}
 			}
 		})
 	}
