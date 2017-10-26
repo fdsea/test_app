@@ -9,6 +9,7 @@ const mainReducer = (state = beginState, action) => {
 			case "SEND_FIRST":  return state = {...state, createData: {...state.createData, ...action.payload}};
 			case "SEND_SECOND": return state = {...state, createData: {...state.createData, ...action.payload}};
 			case "SEND_THIRD":  return state = {...state, createData: {...state.createData, ...action.payload}};
+			case "CLEAR" : return state = {...state, createData: {}};
 			default: return state = {...state};
 	}
 };
